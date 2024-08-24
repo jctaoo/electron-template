@@ -4,10 +4,11 @@
   "main": "index.js",
   "author": "jctaoo <jctaoo@outlook.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development elecrun --vite",
+    "dev": "cross-env NODE_ENV=development elecrun --vite --esbuild-config-file esbuild.config.cjs",
     "preview": "yarn build && cross-env NODE_ENV=production electron ./app/",
-    "build": "elecrun build && vite build",
+    "build": "elecrun build && vite build --esbuild-config-file esbuild.config.cjs",
     "clean": "elecrun clean",
     "pack": "yarn run build && yarn run rebuild && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder -c ./electron-builder.yml --win --linux",
     "pack:all": "yarn run build && yarn run rebuild && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder -c ./electron-builder.yml --win --linux --mac",
@@ -34,6 +35,7 @@
     "vite": "^5.4.2"
   },
   "dependencies": {
+    "electron-store": "^10.0.0",
     "vue": "^3.4.38",
     "vue-router": "4"
   }

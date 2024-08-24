@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
+		"module": "node16",
+		"moduleResolution": "node16",
+		"moduleDetection": "force",
+    "target": "ES2022",
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
@@ -16,7 +19,6 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
     "importHelpers": true,
     "sourceMap": true,
     "baseUrl": "./src",

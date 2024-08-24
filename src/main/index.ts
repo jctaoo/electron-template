@@ -1,7 +1,8 @@
-import { join } from "path";
+import path, { join } from "path";
 import { pathToFileURL } from "url";
 
 import { app, BrowserWindow } from "electron";
+import { retrieveUserSession } from "./services/userSession.js";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -35,7 +36,17 @@ function createWindow(opts: CreateWindowOptions) {
 }
 
 const defaultCreateWindow = () => createWindow(defaultCreateWindowOptions);
-app.whenReady().then(defaultCreateWindow);
+const createWindowWithPath = (path: string) => createWindow({ path });
+const createWindowBySession = () => {
+  const session = retrieveUserSession();
+  if (session) {
+    createWindowWithPath("/home");
+  } else {
+    defaultCreateWindow();
+  }
+}
+
+app.whenReady().then(createWindowBySession);
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
@@ -45,6 +56,6 @@ app.on("window-all-closed", () => {
 
 app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    defaultCreateWindow();
+    createWindowBySession();
   }
 });

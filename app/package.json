@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "main": "index.js",
+  "type": "module",
   "devDependencies": {
     "electron": "^32.0.1"
   }
