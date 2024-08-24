@@ -5,7 +5,13 @@ import { app, BrowserWindow } from "electron";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-function createWindow() {
+type CreateWindowOptions = { path: string };
+const defaultCreateWindowOptions: CreateWindowOptions = { path: "/" };
+
+function createWindow(opts: CreateWindowOptions) {
+  const hashUrlPath = `#${opts.path}`;
+  console.log(`create window: ${hashUrlPath}`);
+
   const win = new BrowserWindow({
     width: 800,
     height: 600,
@@ -14,20 +20,22 @@ function createWindow() {
       contextIsolation: true,
     },
     show: false,
-  }).once("ready-to-show", () => {
-    win.show();
   });
+  win.show(); // TODO: ready-to-show not work
+
   if (isDevelopment) {
-    win.loadURL("http://localhost:3000");
+    win.loadURL("http://localhost:3000" + hashUrlPath);
     win.webContents.toggleDevTools();
   } else {
     win.loadURL(
-      pathToFileURL(join(__dirname, "./renderer/index.html")).toString()
+      pathToFileURL(join(__dirname, "./renderer/index.html")).toString() +
+        hashUrlPath
     );
   }
 }
 
-app.whenReady().then(createWindow);
+const defaultCreateWindow = () => createWindow(defaultCreateWindowOptions);
+app.whenReady().then(defaultCreateWindow);
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
@@ -37,6 +45,6 @@ app.on("window-all-closed", () => {
 
 app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
+    defaultCreateWindow();
   }
 });
