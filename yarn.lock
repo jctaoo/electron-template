@@ -236,6 +236,17 @@
     wrap-ansi "^8.1.0"
     wrap-ansi-cjs "npm:wrap-ansi@^7.0.0"
 
+"@jctaoo/elecrun@^2.4.0":
+  version "2.4.0"
+  resolved "https://npm.pkg.github.com/download/@jctaoo/elecrun/2.4.0/d9644e12b5c3659700f9af0dde4f4734a8a7a3d3#d9644e12b5c3659700f9af0dde4f4734a8a7a3d3"
+  integrity sha512-uv++QQH6VPoIDenLeCt3j9qiqk6JNcTC44ttZq1aBY1+RYN00lPhoDEjPEa5Ol84FW5VMpTNzhLC7pRCidxmZw==
+  dependencies:
+    colorette "^2.0.16"
+    commander "^7.2.0"
+    esbuild "^0.14.11"
+    process-exists "^4.0.0"
+    vite "^2.7.12"
+
 "@jridgewell/sourcemap-codec@^1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.0.tgz#3188bcb273a414b0d215fd22a58540b989b9409a"
@@ -1356,17 +1367,6 @@ electron-rebuild@^3.2.9:
     semver "^7.3.5"
     tar "^6.0.5"
     yargs "^17.0.1"
-
-electron-run@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/electron-run/-/electron-run-2.3.1.tgz#410a6b81091bcfeb4d6ab4cd58fec1a74360fc20"
-  integrity sha512-tX4C/QIurtO2zrsoDjFoy2euUyzjsizC08ks/JsXnZ6DZJQe2CdMScAllmqPrLCqbh6T57vU4bBOJAnS+1K2Qg==
-  dependencies:
-    colorette "^2.0.16"
-    commander "^7.2.0"
-    esbuild "^0.14.11"
-    process-exists "^4.0.0"
-    vite "^2.7.12"
 
 electron-store@^10.0.0:
   version "10.0.0"
