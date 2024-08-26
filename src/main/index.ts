@@ -1,8 +1,14 @@
 import path, { join } from "path";
 import { pathToFileURL } from "url";
 
-import { app, BrowserWindow } from "electron";
-import { retrieveUserSession } from "./services/userSession.js";
+import { app, BrowserWindow, ipcMain } from "electron";
+import {
+  clearUserSession,
+  retrieveUserSession,
+  storeUserSession,
+} from "./services/userSession.js";
+import { WINDOW_PATH } from "@common/path.js";
+import { isLoginWindow } from "./utils/windowUtils.js";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -19,6 +25,7 @@ function createWindow(opts: CreateWindowOptions) {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
+      preload: path.join(import.meta.dirname, "preload.js"),
     },
     show: false,
   });
@@ -40,15 +47,39 @@ const createWindowWithPath = (path: string) => createWindow({ path });
 const createWindowBySession = () => {
   const session = retrieveUserSession();
   if (session) {
-    createWindowWithPath("/home");
+    createWindowWithPath(WINDOW_PATH.homePage);
   } else {
-    defaultCreateWindow();
+    createWindowWithPath(WINDOW_PATH.loginPage);
   }
-}
+};
 
-app.whenReady().then(createWindowBySession);
+const defineHandlers = () => {
+  ipcMain.handle("store-login-token", async (event, token: string) => {
+    await storeUserSession(token);
+
+    if (isLoginWindow(event.sender)) {
+      event.sender.close();
+      createWindowBySession();
+    }
+  });
+  ipcMain.handle("clear-session", async (event) => {
+    await clearUserSession();
+
+    if (!isLoginWindow(event.sender)) {
+      event.sender.close();
+      createWindowWithPath(WINDOW_PATH.loginPage);
+    }
+  });
+};
+
+app.whenReady().then(defineHandlers).then(createWindowBySession);
 
 app.on("window-all-closed", () => {
+  const session = retrieveUserSession();
+  if (!session) {
+    return app.quit();
+  }
+
   if (process.platform !== "darwin") {
     app.quit();
   }

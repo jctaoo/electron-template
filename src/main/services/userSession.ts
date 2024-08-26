@@ -7,7 +7,12 @@ type StoreType = {
 const store = new Store<StoreType>();
 
 export function storeUserSession(token: String) {
+    console.log(`storeUserSession: ${token}`);
     store.set('token', token);
+}
+
+export function clearUserSession() {
+    store.delete('token');
 }
 
 export function retrieveUserSession() {

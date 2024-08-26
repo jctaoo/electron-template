@@ -6,7 +6,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development elecrun --vite --esm",
+    "dev": "cross-env NODE_ENV=development elecrun --vite --esm --preload preload.ts",
     "preview": "yarn build && cross-env NODE_ENV=production electron ./app/",
     "build": "elecrun build && vite build --esbuild-config-file esbuild.config.cjs",
     "clean": "elecrun clean",

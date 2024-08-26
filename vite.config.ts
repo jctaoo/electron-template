@@ -2,6 +2,7 @@ import { resolve } from "path";
 
 import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
+import { fileURLToPath } from "url"
 
 const rendererPath = resolve(__dirname, "./src/renderer");
 const outDirRenderer = resolve(__dirname, "./app/renderer");
@@ -14,5 +15,10 @@ export default defineConfig({
   build: {
     outDir: outDirRenderer,
     emptyOutDir: true,
+  },
+  resolve: {
+    alias: [
+      { find: /^@common/, replacement: resolve(rendererPath, "../common") },
+    ],
   },
 });
