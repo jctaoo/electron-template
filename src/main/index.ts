@@ -1,5 +1,6 @@
 import path, { join } from "path";
 import { pathToFileURL } from "url";
+import log from 'electron-log/main.js';
 
 import { app, BrowserWindow, ipcMain } from "electron";
 import {
@@ -12,24 +13,31 @@ import { isLoginWindow } from "./utils/windowUtils.js";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
+log.transports.console.format = "[{processType}] {h}:{i}:{s} [{level}]: {text}";
+log.transports.console.useStyles = true;
+
+log.info(`App Started: ${isDevelopment ? "Development" : "Production"}`);
+
 type CreateWindowOptions = { path: string };
 const defaultCreateWindowOptions: CreateWindowOptions = { path: "/" };
 
 function createWindow(opts: CreateWindowOptions) {
   const hashUrlPath = `#${opts.path}`;
-  console.log(`create window: ${hashUrlPath}`);
+  log.info(`create window: ${hashUrlPath}`);
 
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1500,
+    height: 900,
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
       preload: path.join(import.meta.dirname, "preload.js"),
     },
     show: false,
+    autoHideMenuBar: true,
+  }).once("ready-to-show", () => {
+    win.show();
   });
-  win.show(); // TODO: ready-to-show not work
 
   if (isDevelopment) {
     win.loadURL("http://localhost:3000" + hashUrlPath);
@@ -72,7 +80,7 @@ const defineHandlers = () => {
   });
 };
 
-app.whenReady().then(defineHandlers).then(createWindowBySession);
+app.whenReady().then(() => log.initialize()).then(defineHandlers).then(createWindowBySession);
 
 app.on("window-all-closed", () => {
   const session = retrieveUserSession();
