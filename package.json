@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development elecrun --vite --esm --preload preload.ts",
     "preview": "yarn build && cross-env NODE_ENV=production electron ./app/",
-    "build": "elecrun build && vite build --esbuild-config-file esbuild.config.cjs",
+    "build": "elecrun build --esm --preload preload.ts && vite build",
     "clean": "elecrun clean",
     "pack": "yarn run build && yarn run rebuild && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder -c ./electron-builder.yml --win --linux",
     "pack:all": "yarn run build && yarn run rebuild && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder -c ./electron-builder.yml --win --linux --mac",

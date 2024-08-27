@@ -263,10 +263,10 @@
     wrap-ansi "^8.1.0"
     wrap-ansi-cjs "npm:wrap-ansi@^7.0.0"
 
-"@jctaoo/elecrun@^2.4.2":
-  version "2.4.2"
-  resolved "https://npm.pkg.github.com/download/@jctaoo/elecrun/2.4.2/bf39aa7db59b4d39c74960da3e50bb2746c268f6#bf39aa7db59b4d39c74960da3e50bb2746c268f6"
-  integrity sha512-3aodXrP3laa4Pl9AsgFicqHC4W6OTOrYJ84h5YDGySAXLVlvvNABJcgZs4M0oh+bltKiBszR6lOD7oVNxZiSLw==
+"@jctaoo/elecrun@^2.4.3":
+  version "2.4.3"
+  resolved "https://npm.pkg.github.com/download/@jctaoo/elecrun/2.4.3/3104f6667da2033b22716d4ad32aa2d54b37149e#3104f6667da2033b22716d4ad32aa2d54b37149e"
+  integrity sha512-ZMVq3RDiw+cFljZzFmWFqbefbK8gGpLBGQGz28Evob2deMRBd6acIAHdPJnOdZQ/vHV164W9/nKPfSjJwe9Omg==
   dependencies:
     colorette "^2.0.16"
     commander "^7.2.0"
