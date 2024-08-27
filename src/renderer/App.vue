@@ -23,6 +23,13 @@ const themOverrides: GlobalThemeOverrides = {
     borderHover: "1px solid #4880FF",
     borderFocus: "1px solid #4880FF",
     iconSizeLarge: "30px",
+    // darker
+    colorHoverPrimary: "#3c6cb7",
+    colorFocusPrimary: "#3c6cb7",
+    colorPressedPrimary: "#3c6cb7",
+    borderHoverPrimary: "1px solid #3c6cb7",
+    borderFocusPrimary: "1px solid #3c6cb7",
+    borderPressedPrimary: "1px solid #3c6cb7",
   },
   Typography: {
     headerTextColor: "#4880FF",
