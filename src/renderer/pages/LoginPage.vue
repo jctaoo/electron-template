@@ -19,6 +19,10 @@ const goToForgotPassword = async () => {
 const goToSignUp = async () => {
   router.push(WINDOW_PATH.registerPage);
 };
+
+const wechatLogin = async () => {
+  router.push(WINDOW_PATH.wechatLoginPage);
+};
 </script>
 
 <template>
@@ -72,7 +76,7 @@ const goToSignUp = async () => {
         <NDivider class="mt-3 px-[20%] text-gray-400">其他登录方式</NDivider>
 
         <NFlex justify="center">
-          <NButton circle size="large">
+          <NButton circle size="large" @click="wechatLogin">
             <template #icon>
               <n-icon class="w-full h-full">
                 <img src="../assets/login/wechat.png" />

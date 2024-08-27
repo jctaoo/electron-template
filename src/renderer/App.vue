@@ -23,6 +23,10 @@ const themOverrides: GlobalThemeOverrides = {
     borderHover: "1px solid #4880FF",
     borderFocus: "1px solid #4880FF",
     iconSizeLarge: "30px",
+  },
+  Typography: {
+    headerTextColor: "#4880FF",
+    headerFontWeight: "600",
   }
 };
 </script>

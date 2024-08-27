@@ -14,6 +14,7 @@ export const WINDOW_CONFIG: Record<keyof typeof WINDOW_PATH, Partial<BrowserWind
   loginPage: authPageConfig,
   forgetPage: authPageConfig,
   registerPage: authPageConfig,
+  wechatLoginPage: authPageConfig,
 }
 
 export function buildWindowConfig(path: keyof typeof WINDOW_PATH) {

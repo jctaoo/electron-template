@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { Titlebar } from "custom-electron-titlebar";
-import { WINDOW_PATH } from '@common/path.js';
+import { isAuthPage, WINDOW_PATH } from '@common/path.js';
 
 // import { injectBrowserAction } from 'electron-chrome-extensions/dist/browser-action'
 
@@ -24,7 +24,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
 window.addEventListener('DOMContentLoaded', () => {
   const windowPath = window.location.hash;
 
-  if (windowPath.slice(1) !== WINDOW_PATH.loginPage) {
+  if (!isAuthPage(windowPath.slice(1))) {
     // Title bar implementation
     new Titlebar({ });
   }

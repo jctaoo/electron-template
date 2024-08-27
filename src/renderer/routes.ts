@@ -10,5 +10,6 @@ export const router = createRouter({
     { path: WINDOW_PATH.loginPage, component: () => import('./pages/LoginPage.vue') },
     { path: WINDOW_PATH.forgetPage, component: () => import('./pages/ForgetPage.vue') },
     { path: WINDOW_PATH.registerPage, component: () => import('./pages/RegisterPage.vue') },
+    { path: WINDOW_PATH.wechatLoginPage, component: () => import('./pages/WechatLoginPage.vue') },
   ],
 })
