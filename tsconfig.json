@@ -28,5 +28,5 @@
       "@renderer/*": ["renderer/*"]
     }
   },
-  "exclude": ["node_modules", "app", "dist"]
+  "exclude": ["node_modules", "app", "dist", "postcss.config.cjs", "tailwind.config.js"]
 }
