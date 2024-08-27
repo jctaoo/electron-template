@@ -26,6 +26,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   if (!isAuthPage(windowPath.slice(1))) {
     // Title bar implementation
-    new Titlebar({ });
+    // new Titlebar({ });
   }
 });
