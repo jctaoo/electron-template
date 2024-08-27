@@ -21,7 +21,7 @@
     "fix:prettier": "prettier . --write"
   },
   "devDependencies": {
-    "@jctaoo/elecrun": "^2.4.0",
+    "@jctaoo/elecrun": "^2.4.2",
     "@types/node": "^22.5.0",
     "@vitejs/plugin-vue": "^5.1.2",
     "@vue/compiler-sfc": "^3.4.38",
@@ -35,6 +35,7 @@
     "vite": "^5.4.2"
   },
   "dependencies": {
+    "custom-electron-titlebar": "^4.2.8",
     "electron-log": "^5.1.7",
     "electron-store": "^10.0.0",
     "vue": "^3.4.38",

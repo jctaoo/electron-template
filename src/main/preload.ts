@@ -1,5 +1,6 @@
-// import { contextBridge, ipcRenderer } from "electron";
-const { contextBridge, ipcRenderer } = require("electron");
+import { contextBridge, ipcRenderer } from 'electron'
+import { Titlebar } from "custom-electron-titlebar";
+
 // import { injectBrowserAction } from 'electron-chrome-extensions/dist/browser-action'
 
 // see: https://www.electronjs.org/docs/latest/tutorial/tutorial-preload#augmenting-the-renderer-with-a-preload-script
@@ -17,4 +18,9 @@ contextBridge.exposeInMainWorld("electronAPI", {
   clearSession: async () => {
     await ipcRenderer.invoke("clear-session");
   },
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  // Title bar implementation
+  new Titlebar({});
 });

@@ -10,6 +10,7 @@ import {
 } from "./services/userSession.js";
 import { WINDOW_PATH } from "@common/path.js";
 import { isLoginWindow } from "./utils/windowUtils.js";
+import { setupTitlebar, attachTitlebarToWindow } from "custom-electron-titlebar/main";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -31,13 +32,18 @@ function createWindow(opts: CreateWindowOptions) {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
-      preload: path.join(import.meta.dirname, "preload.js"),
+      sandbox: false,
+      preload: path.join(import.meta.dirname, "preload.cjs"),
     },
     show: false,
     autoHideMenuBar: true,
+    // options to setup custom titlebar, if don't want to use, remove these options
+    titleBarStyle: "hidden",
+    // titleBarOverlay: true,
   }).once("ready-to-show", () => {
     win.show();
   });
+  attachTitlebarToWindow(win);
 
   if (isDevelopment) {
     win.loadURL("http://localhost:3000" + hashUrlPath);
@@ -80,6 +86,7 @@ const defineHandlers = () => {
   });
 };
 
+setupTitlebar();
 app.whenReady().then(() => log.initialize()).then(defineHandlers).then(createWindowBySession);
 
 app.on("window-all-closed", () => {
