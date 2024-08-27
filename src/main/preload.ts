@@ -22,5 +22,5 @@ contextBridge.exposeInMainWorld("electronAPI", {
 
 window.addEventListener('DOMContentLoaded', () => {
   // Title bar implementation
-  new Titlebar({});
+  new Titlebar({ });
 });

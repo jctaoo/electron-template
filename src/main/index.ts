@@ -11,6 +11,7 @@ import {
 import { WINDOW_PATH } from "@common/path.js";
 import { isLoginWindow } from "./utils/windowUtils.js";
 import { setupTitlebar, attachTitlebarToWindow } from "custom-electron-titlebar/main";
+import { buildWindowSizeConfig } from "./windowConfig.js";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -19,16 +20,15 @@ log.transports.console.useStyles = true;
 
 log.info(`App Started: ${isDevelopment ? "Development" : "Production"}`);
 
-type CreateWindowOptions = { path: string };
-const defaultCreateWindowOptions: CreateWindowOptions = { path: "/" };
+type CreateWindowOptions = { path: keyof typeof WINDOW_PATH };
+const defaultCreateWindowOptions: CreateWindowOptions = { path: "homePage" };
 
 function createWindow(opts: CreateWindowOptions) {
-  const hashUrlPath = `#${opts.path}`;
+  const hashUrlPath = `#${WINDOW_PATH[opts.path]}`;
   log.info(`create window: ${hashUrlPath}`);
 
   const win = new BrowserWindow({
-    width: 1500,
-    height: 900,
+    ...buildWindowSizeConfig(opts.path),
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -43,11 +43,16 @@ function createWindow(opts: CreateWindowOptions) {
   }).once("ready-to-show", () => {
     win.show();
   });
+
+  win.setMenu(null);
   attachTitlebarToWindow(win);
 
   if (isDevelopment) {
     win.loadURL("http://localhost:3000" + hashUrlPath);
-    win.webContents.toggleDevTools();
+
+    // Uncomment the following line to open the DevTools.
+    // win.webContents.toggleDevTools();
+
   } else {
     win.loadURL(
       pathToFileURL(join(__dirname, "./renderer/index.html")).toString() +
@@ -57,13 +62,13 @@ function createWindow(opts: CreateWindowOptions) {
 }
 
 const defaultCreateWindow = () => createWindow(defaultCreateWindowOptions);
-const createWindowWithPath = (path: string) => createWindow({ path });
+const createWindowWithPath = (path: keyof typeof WINDOW_PATH) => createWindow({ path });
 const createWindowBySession = () => {
   const session = retrieveUserSession();
   if (session) {
-    createWindowWithPath(WINDOW_PATH.homePage);
+    createWindowWithPath("homePage");
   } else {
-    createWindowWithPath(WINDOW_PATH.loginPage);
+    createWindowWithPath("loginPage");
   }
 };
 
@@ -81,13 +86,12 @@ const defineHandlers = () => {
 
     if (!isLoginWindow(event.sender)) {
       event.sender.close();
-      createWindowWithPath(WINDOW_PATH.loginPage);
+      createWindowWithPath("loginPage");
     }
   });
 };
 
-setupTitlebar();
-app.whenReady().then(() => log.initialize()).then(defineHandlers).then(createWindowBySession);
+app.whenReady().then(() => log.initialize()).then(setupTitlebar).then(defineHandlers).then(createWindowBySession);
 
 app.on("window-all-closed", () => {
   const session = retrieveUserSession();
