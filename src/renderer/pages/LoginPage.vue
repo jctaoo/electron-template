@@ -1,17 +1,29 @@
 <script setup>
-import log from 'electron-log/renderer';
+import WindowLayout from "@renderer/layouts/WindowLayout.vue";
+import { NFlex, NImage, NButton } from "naive-ui"
 
 const login = async () => {
+  console.log('login');
   await window.electronAPI.storeLoginToken('token');
-};
-
-const logDemo = () => {
-  log.info('Demo log');
 };
 </script>
 
 <template>
-  <h1>Login Page</h1>
-  <button @click="login">Login</button>
-  <button @click="logDemo">Log Demo</button>
+  <WindowLayout>
+    <NFlex class="page-container">
+      <img src="../assets/login/side.png" class="side-image" />
+    </NFlex>
+  </WindowLayout>
 </template>
+
+<style scoped>
+.page-container {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-image {
+  height: 100vh;
+}
+</style>

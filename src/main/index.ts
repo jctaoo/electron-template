@@ -11,7 +11,7 @@ import {
 import { WINDOW_PATH } from "@common/path.js";
 import { isLoginWindow } from "./utils/windowUtils.js";
 import { setupTitlebar, attachTitlebarToWindow } from "custom-electron-titlebar/main";
-import { buildWindowSizeConfig } from "./windowConfig.js";
+import { buildWindowConfig } from "./windowConfig.js";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -28,7 +28,7 @@ function createWindow(opts: CreateWindowOptions) {
   log.info(`create window: ${hashUrlPath}`);
 
   const win = new BrowserWindow({
-    ...buildWindowSizeConfig(opts.path),
+    ...buildWindowConfig(opts.path),
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -39,7 +39,6 @@ function createWindow(opts: CreateWindowOptions) {
     autoHideMenuBar: true,
     // options to setup custom titlebar, if don't want to use, remove these options
     titleBarStyle: "hidden",
-    // titleBarOverlay: true,
   }).once("ready-to-show", () => {
     win.show();
   });
@@ -51,7 +50,7 @@ function createWindow(opts: CreateWindowOptions) {
     win.loadURL("http://localhost:3000" + hashUrlPath);
 
     // Uncomment the following line to open the DevTools.
-    // win.webContents.toggleDevTools();
+    win.webContents.toggleDevTools();
 
   } else {
     win.loadURL(

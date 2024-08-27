@@ -19,6 +19,7 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: /^@common/, replacement: resolve(rendererPath, "../common") },
+      { find: /^@renderer/, replacement: resolve(rendererPath, "../renderer") },
     ],
   },
 });
