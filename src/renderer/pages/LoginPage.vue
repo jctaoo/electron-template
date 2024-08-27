@@ -12,9 +12,12 @@ const login = async () => {
 <template>
   <WindowLayout>
     <NFlex class="page-container">
-      <span class="side-image-container">
-        <img src="../assets/login/side.png" class="side-image" />
-      </span>
+      <div class="relative">
+        <span class="h-full overflow-hidden">
+          <div class="side-image" />
+        </span>
+        <img src="../assets/login/over.png" class="side-image-over" />
+      </div>
       <main>
         <n-tabs class="card-tabs" default-value="signin" size="large" animated pane-wrapper-style="margin: 0 -4px"
           pane-style="padding-left: 4px; padding-right: 4px; box-sizing: border-box;">
@@ -74,14 +77,18 @@ const login = async () => {
   align-items: center;
 }
 
-.side-image-container {
-  height: 100%;
-  overflow: hidden;
+.side-image-over {
+  position: absolute;
+  bottom: 0;
+  right: -50px;
 }
 
 .side-image {
   height: 100vh;
-  transform: scale(1.1);
+  background-image: url('../assets/login/side.png');
+  width: 300px;
+  background-size: cover;
+  background-position: center;
 }
 
 main {
