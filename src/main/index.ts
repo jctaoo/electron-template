@@ -54,7 +54,7 @@ function createWindow(opts: CreateWindowOptions) {
 
   } else {
     win.loadURL(
-      pathToFileURL(join(__dirname, "./renderer/index.html")).toString() +
+      pathToFileURL(join(import.meta.dirname, "./renderer/index.html")).toString() +
         hashUrlPath
     );
   }
