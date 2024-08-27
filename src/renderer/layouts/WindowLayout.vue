@@ -14,6 +14,7 @@
 .window-layout {
   height: 100vh;
   width: 100vw;
+  user-select: none;
 }
 
 .window-layout__header {
