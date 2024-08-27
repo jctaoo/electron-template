@@ -20,6 +20,9 @@ const themOverrides: GlobalThemeOverrides = {
   },
   Button: {
     textColor: "#4880FF",
+    borderHover: "1px solid #4880FF",
+    borderFocus: "1px solid #4880FF",
+    iconSizeLarge: "30px",
   }
 };
 </script>

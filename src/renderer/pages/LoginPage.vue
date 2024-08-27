@@ -1,25 +1,29 @@
 <script setup>
+import { WINDOW_PATH } from "@common/path";
 import LinkButton from "@renderer/components/LinkButton.vue";
-import WindowLayout from "@renderer/layouts/WindowLayout.vue";
-import { NFlex, NImage, NButton, NTabs, NTabPane, NForm, NFormItem, NFormItemRow, NInput, NDivider } from "naive-ui"
+import AuthLayout from "@renderer/layouts/AuthLayout.vue";
+import { NFlex, NButton, NTabs, NTabPane, NForm, NFormItemRow, NInput, NDivider } from "naive-ui"
+import { useRouter } from "vue-router";
 
 const login = async () => {
   console.log('login');
   await window.electronAPI.storeLoginToken('token');
 };
+
+const router = useRouter();
+
+const goToForgotPassword = async () => {
+  router.push(WINDOW_PATH.forgetPage);
+};
+
+const goToSignUp = async () => {
+  router.push(WINDOW_PATH.registerPage);
+};
 </script>
 
 <template>
-  <WindowLayout>
-    <NFlex class="page-container">
-      <div class="relative">
-        <span class="h-full overflow-hidden">
-          <div class="side-image" />
-        </span>
-        <img src="../assets/login/over.png" class="side-image-over" />
-      </div>
-      <main>
-        <n-tabs class="card-tabs" default-value="signin" size="large" animated pane-wrapper-style="margin: 0 -4px"
+  <AuthLayout disable-back>
+    <n-tabs class="card-tabs" default-value="signin" size="large" animated pane-wrapper-style="margin: 0 -4px"
           pane-style="padding-left: 4px; padding-right: 4px; box-sizing: border-box;">
           <n-tab-pane name="signin" tab="密码登录">
             <n-form>
@@ -61,39 +65,23 @@ const login = async () => {
         </n-tabs>
 
         <NFlex justify="space-between" class="mt-3">
-          <LinkButton text="忘记密码" @click="login" />
-          <LinkButton text="立即注册" @click="login" />
+          <LinkButton text="忘记密码" @click="goToForgotPassword" />
+          <LinkButton text="立即注册" @click="goToSignUp" />
         </NFlex>
-      </main>
-    </NFlex>
-  </WindowLayout>
+
+        <NDivider class="mt-3 px-[20%] text-gray-400">其他登录方式</NDivider>
+
+        <NFlex justify="center">
+          <NButton circle size="large">
+            <template #icon>
+              <n-icon class="w-full h-full">
+                <img src="../assets/login/wechat.png" />
+              </n-icon>
+            </template>
+          </NButton>
+        </NFlex>
+  </AuthLayout>
 </template>
 
 <style scoped>
-.page-container {
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
-
-.side-image-over {
-  position: absolute;
-  bottom: 0;
-  right: -50px;
-}
-
-.side-image {
-  height: 100vh;
-  background-image: url('../assets/login/side.png');
-  width: 300px;
-  background-size: cover;
-  background-position: center;
-}
-
-main {
-  flex: 1;
-  padding: 0 8%;
-  padding-bottom: 5%;
-}
 </style>
