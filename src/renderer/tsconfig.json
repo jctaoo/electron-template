@@ -3,15 +3,22 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "types": ["vite/client"]
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext",
+      "WebWorker"
+    ],
+    "types": [
+      "vite/client",
+      "../../node_modules/unplugin-icons/types/vue3.d.ts"
+    ]
   },
-  "include": ["../renderer/**/*", "../common/**/*"],
-  "exclude": ["../main/**/*"]
+  "include": [
+    "../renderer/**/*",
+    "../common/**/*"
+  ],
+  "exclude": [
+    "../main/**/*"
+  ]
 }

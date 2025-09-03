@@ -1,8 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
-import { Titlebar } from "custom-electron-titlebar";
 import { isAuthPage, WINDOW_PATH } from '@common/path.js';
-
-// import { injectBrowserAction } from 'electron-chrome-extensions/dist/browser-action'
 
 // see: https://www.electronjs.org/docs/latest/tutorial/tutorial-preload#augmenting-the-renderer-with-a-preload-script
 contextBridge.exposeInMainWorld('versions', {
@@ -18,6 +15,9 @@ contextBridge.exposeInMainWorld("electronAPI", {
   },
   clearSession: async () => {
     await ipcRenderer.invoke("clear-session");
+  },
+  setWindowTheme: async (theme: "light" | "dark" | "system") => {
+    await ipcRenderer.invoke("set-window-theme", theme);
   },
 });
 

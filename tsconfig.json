@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-		"module": "node16",
-		"moduleResolution": "node16",
-		"moduleDetection": "force",
-    "target": "ES2022",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "target": "esnext",
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,

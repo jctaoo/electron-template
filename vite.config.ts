@@ -2,19 +2,37 @@ import { resolve } from "path";
 
 import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
-import { fileURLToPath } from "url"
+import Icons from "unplugin-icons/vite";
 
+// loader helpers
+import { FileSystemIconLoader  } from 'unplugin-icons/loaders'
+
+const projectPath = resolve(__dirname, "./");
 const rendererPath = resolve(__dirname, "./src/renderer");
 const outDirRenderer = resolve(__dirname, "./app/renderer");
+const nodeModulesPath = resolve(__dirname, "./node_modules");
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  envDir: projectPath,
+  plugins: [
+    vue(),
+    Icons({
+      customCollections: {
+        // "lobe-icons": FileSystemIconLoader(lobeIconsPath, (svg) =>
+        //   svg.replace(/^<svg /, '<svg fill="currentColor" '),
+        // ),
+      },
+    }),
+  ],
   base: "./",
   root: rendererPath,
   build: {
     outDir: outDirRenderer,
     emptyOutDir: true,
+  },
+  worker: {
+    format: "es",
   },
   resolve: {
     alias: [
