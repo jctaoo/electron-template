@@ -12,7 +12,7 @@ import { consoleLogFormat, rotateLogFile } from "./utils/log.js";
 import { windowStateManager } from "./services/windowStateManager.js";
 import { setupDevTools } from "./utils/setupDevTools.js";
 import { notificationService } from "./services/notificationService.js";
-import { themeService, updateWindowTheme } from "./services/themeService.js";
+import { updateWindowTheme } from "./services/themeService.js";
 
 // initilize log before import any other modules
 const isDevelopment = process.env.NODE_ENV === "development";

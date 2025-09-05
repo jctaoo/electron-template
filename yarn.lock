@@ -390,10 +390,10 @@
   dependencies:
     minipass "^7.0.4"
 
-"@jctaoo/elecrun@^2.4.7":
-  version "2.4.7"
-  resolved "https://npm.pkg.github.com/download/@jctaoo/elecrun/2.4.7/63ef7e6991ddaab90875e05c6d87a4efaea8c78c#63ef7e6991ddaab90875e05c6d87a4efaea8c78c"
-  integrity sha512-q+/BIgbounnu9dAvsBSDkok8YfH+d3zNsrcFZtSayts2+SWiYR1vMKog1asGBAD/KPi7nlwqJIAmzy8acQ+F/A==
+"@jctaoo/elecrun@2.4.8":
+  version "2.4.8"
+  resolved "https://npm.pkg.github.com/download/@jctaoo/elecrun/2.4.8/35be5b7e704d84656ba291f8eb11b9a953ddc8df#35be5b7e704d84656ba291f8eb11b9a953ddc8df"
+  integrity sha512-cSBVM6nBygRh0+JFnlFbF4ow4dUiOUqLDA2bmugBACZG+k4NHsO3lLX/XtRIItVmpqA/UlNNP3D/YoirNY5cIg==
   dependencies:
     colorette "^2.0.16"
     commander "^7.2.0"
