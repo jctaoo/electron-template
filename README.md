@@ -142,6 +142,27 @@ yarn pack:linux
 
 ---
 
+## 使用 shadcn-vue 组件
+
+本项目渲染进程已按官方方式接入 `Tailwind v4 + shadcn-vue`（参考文档：[Vite 安装指南](https://www.shadcn-vue.com/docs/installation/vite.html)）。如需新增组件，请使用 CLI 一键添加：
+
+```bash
+# 在项目根目录执行（CLI 会在 src/renderer 下生成/更新组件）
+npx shadcn-vue@latest add button
+```
+
+- 将 `button` 替换为你需要的组件名称（如 `input`、`label`、`card`、`tabs`、`separator` 等）。
+- 组件将会被生成到 `src/renderer/components/ui/` 下，随后可直接按 `@/components/ui/*` 路径引用。
+- 如需重新初始化配置（例如修改主题变量），可运行：
+
+```bash
+npx shadcn-vue@latest init
+```
+
+> 注意：首次运行可能需要根据提示创建/更新 `components.json`，并安装所需依赖。若在 CI 或无人值守环境中运行，请根据提示选择非交互参数或提前准备好配置文件。
+
+---
+
 ## 常见问题（Windows）
 
 - PowerShell 执行策略导致脚本无法运行

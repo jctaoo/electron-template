@@ -1,13 +1,10 @@
-<script setup lang="ts">
-import { NH3 } from 'naive-ui';
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div class="main-title-bar h-full w-full flex justify-between items-center shadow-sm">
-    <NH3 class="text-gray-700 m-0 ml-5">XXXX软件</NH3>
-    <div class="action">
-
+  <div class="h-full w-full flex justify-between items-center shadow-sm px-5">
+    <h3 class="m-0 text-base font-semibold text-gray-800">App</h3>
+    <div class="flex items-center gap-2">
+      <!-- Placeholder for window actions or toolbar -->
     </div>
   </div>
 </template>

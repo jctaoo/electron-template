@@ -73,3 +73,21 @@ This is an Electron application with Vue 3 frontend, using elecrun as the build 
 - DevTools integration with persistent window state
 - Cross-platform packaging with electron-builder
 - Native dependency rebuilding required after installs
+
+## UI: shadcn-vue 使用说明
+
+- 本仓库渲染端采用 `Tailwind v4 + shadcn-vue`。如需添加 UI 组件，请使用 CLI：
+
+```bash
+npx shadcn-vue@latest add button
+```
+
+- 将 `button` 替换为目标组件名（如 `input`、`label`、`card`、`tabs`、`separator`）。
+- 组件默认生成在 `src/renderer/components/ui/`，引用路径建议使用 `@/components/ui/*`。
+- 如需重新初始化或修改配置：
+
+```bash
+npx shadcn-vue@latest init
+```
+
+> 参考文档：[Vite 安装 - shadcn/vue](https://www.shadcn-vue.com/docs/installation/vite.html)

@@ -3,6 +3,6 @@
   "compilerOptions": {
     "outDir": "../../app"
   },
-  "include": ["../main/**/*", "../common/**/*"],
+  "include": ["../main/**/*", "../common/**/*", "../renderer/lib"],
   "exclude": ["../renderer/**/*"]
 }

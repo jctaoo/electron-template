@@ -1,17 +1,17 @@
-<script setup>
-import MainWindowLayout from "@renderer/layouts/MainWindowLayout.vue";
-import { NButton, NH1 } from "naive-ui";
+<script setup lang="ts">
+import MainWindowLayout from "@/layouts/MainWindowLayout.vue"
+import { Button } from "@/components/ui/button"
 
 const logout = async () => {
-  await window.electronAPI.clearSession();
-};
+  await window.electronAPI.clearSession()
+}
 </script>
 
 <template>
   <MainWindowLayout>
-    <div class="w-full h-screen flex flex-col items-center justify-center">
-      <NH1>Hello World!!</NH1>
-      <NButton @click="logout" size="large" type="primary">退出登录</NButton>
+    <div class="w-full h-screen flex flex-col items-center justify-center gap-4">
+      <h1 class="text-2xl font-bold">Hello World!!</h1>
+      <Button class="min-w-32" @click="logout">退出登录</Button>
     </div>
   </MainWindowLayout>
 </template>

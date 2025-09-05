@@ -1,5 +1,5 @@
-appId: com.jctaoo.electron_starter
-productName: nerdy
+appId: com.jctaoo.elecrun_template_starter
+productName: elecrun_template_starter
 copyright: Copyright © 2021 jctaoo
 directories:
   output: dist
