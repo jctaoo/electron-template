@@ -36,8 +36,8 @@ log.transports.ipc.level = false;
 log.info(`App Started: ${isDevelopment ? "Development" : "Production"}`);
 
 if (isPackaged && process.platform === "win32") {
-  app.setAppUserModelId("com.jctaoo.live_assistant");
-  log.info("setAppUserModelId: com.jctaoo.live_assistant");
+  app.setAppUserModelId("com.jctaoo.elecrun_template_starter");
+  log.info("setAppUserModelId: com.jctaoo.elecrun_template_starter");
 } else if (!isPackaged && process.platform === "win32") {
   app.setAppUserModelId(process.execPath);
   log.info("setAppUserModelId: " + process.execPath);
