@@ -13,6 +13,7 @@ import { windowStateManager } from "./services/windowStateManager.js";
 import { setupDevTools } from "./utils/setupDevTools.js";
 import { notificationService } from "./services/notificationService.js";
 import { updateWindowTheme } from "./services/themeService.js";
+import { setupDevtoolsFont } from "./utils/devtoolsFont.js";
 
 // initilize log before import any other modules
 const isDevelopment = process.env.NODE_ENV === "development";
@@ -62,6 +63,8 @@ function createWindow(opts: CreateWindowOptions) {
   }).once("ready-to-show", () => {
     win.show();
   });
+  
+  setupDevtoolsFont(win);
 
   win.setMenu(null);
 
